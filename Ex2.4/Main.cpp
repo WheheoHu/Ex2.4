@@ -1,4 +1,4 @@
-#include "MyFunc.h"
+#include "MyMainFunc.h"
 
 int main() {
 	InitWindow();
