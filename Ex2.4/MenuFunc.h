@@ -25,6 +25,10 @@ constexpr auto CIRCLE_R = 100.0;
 constexpr auto GL_LINES_MODE = 1;
 constexpr auto GL_LINE_STRIP_MODE = 2;
 constexpr auto GL_LINE_LOOP_MODE = 3;
+//螺旋线内外半径
+constexpr auto R_INNER = 30;
+constexpr auto R_OUTER = 150;
+
 
 static int iColor = WHITE;
 static CoordinateXY   coorxy;
@@ -51,6 +55,8 @@ void removeall(fstream &datafile);
 //画圆
 void RenderACircle(int CiclePointNum);
 void RenderACircle(int CiclePointNum, int  CicleLineMode);
+//螺旋线
+void REnserAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot = 100);
 //保存xy数据
 void setXY(int x, int y);
 
@@ -85,6 +91,7 @@ void InitMenu()
 	CircleMenu = glutCreateMenu(CircleMenu_CB);
 	glutAddMenuEntry("Circle50", 1);
 	glutAddSubMenu("CircleLineMode", CircleLineModeMenu);
+	glutAddMenuEntry("Helix", 2);
 
 	MainMenu = glutCreateMenu(MainMenu_CB);
 	//glutSetMenu(MainMenu);
@@ -144,7 +151,7 @@ inline void CircleMenu_CB(int MenuID)
 		break;
 	}
 	case 2: {
-		RenderACircle(CIRCLE_POINT_NUM, GL_LINES_MODE);
+		REnserAHelix(R_INNER, R_OUTER);
 		break;
 	}
 	}
@@ -252,7 +259,7 @@ inline void RenderACircle(int CiclePointNum)
 		coorx = CIRCLE_R * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
 		coory = CIRCLE_R * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
 		cout << coorx << " " << coory << endl;
-		glVertex2i(coorx,  coory);
+		glVertex2i(coorx, coory);
 	}
 	glEnd();
 	glutPostRedisplay();
@@ -300,4 +307,29 @@ inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 		glEnd();
 	}
 	glutPostRedisplay();
+}
+
+inline void REnserAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
+{
+	float fR_step = (fRadiusOut - fRadiusInner) / iNumOfDot;
+	float fR_temp = fRadiusInner;
+	int icoorx;
+	int icoory;
+	glPointSize(2);
+	glBegin(GL_POINTS);
+	for (float angle = 0; angle < 360 * 3; angle += 360 * 3 / iNumOfDot)
+	{
+		icoorx = fR_temp * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
+		icoory = fR_temp * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
+		
+		glColor3f(rand()%100/100., rand() % 100 / 100., rand() % 100 / 100.);
+
+		cout << icoorx << " " << icoory << endl;
+		glVertex2i(icoorx, icoory);
+		fR_temp += fR_step;
+
+	}
+	glEnd();
+	glutPostRedisplay();
+
 }
