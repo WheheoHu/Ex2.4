@@ -44,6 +44,8 @@ void ColorPointMenu_CB(int MenuID);
 void CircleMenu_CB(int MenuID);
 //LineMode submenu
 void CircleLineModeMenu_CB(int MenuID);
+//textsheet submenu callback
+void TextSheet_CB(int MenuID);
 //主菜单回调
 void MainMenu_CB(int MenuID);
 //保存数据
@@ -57,6 +59,8 @@ void RenderACircle(int CiclePointNum);
 void RenderACircle(int CiclePointNum, int  CicleLineMode);
 //螺旋线
 void RenderAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot = 100);
+//绘制图表
+void RenderText();
 //保存xy数据
 void setXY(int x, int y);
 
@@ -71,7 +75,11 @@ void setXY(int x, int y) {
 
 void InitMenu()
 {
-	int MainMenu, ColorPointMenu, CircleMenu, CircleLineModeMenu;
+	int MainMenu;
+	int ColorPointMenu;
+	int CircleMenu;
+	int CircleLineModeMenu;
+	int TextSheet;
 
 	ColorPointMenu = glutCreateMenu(ColorPointMenu_CB);
 	//glutSetMenu(ColorPointMenu);
@@ -93,11 +101,15 @@ void InitMenu()
 	glutAddSubMenu("CircleLineMode", CircleLineModeMenu);
 	glutAddMenuEntry("Helix", 2);
 
+	TextSheet = glutCreateMenu(TextSheet_CB);
+	glutAddMenuEntry("TextSheet", 1);
+
 	MainMenu = glutCreateMenu(MainMenu_CB);
 	//glutSetMenu(MainMenu);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutAddSubMenu("ColorPoint", ColorPointMenu);
 	glutAddSubMenu("Circles", CircleMenu);
+	glutAddSubMenu("TextSheet", TextSheet);
 	glutAddMenuEntry("EXIT", 0);
 
 
@@ -171,6 +183,17 @@ inline void CircleLineModeMenu_CB(int MenuID)
 	}
 	case 3: {
 		RenderACircle(CIRCLE_POINT_NUM, GL_LINE_LOOP_MODE);
+		break;
+	}
+	}
+}
+
+inline void TextSheet_CB(int MenuID)
+{
+	switch (MenuID)
+	{
+	case 1: {
+		RenderText();
 		break;
 	}
 	}
@@ -321,8 +344,8 @@ inline void RenderAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
 	{
 		icoorx = fR_temp * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
 		icoory = fR_temp * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
-		
-		glColor3f(rand()%100/100., rand() % 100 / 100., rand() % 100 / 100.);
+
+		glColor3f(rand() % 100 / 100., rand() % 100 / 100., rand() % 100 / 100.);
 
 		cout << icoorx << " " << icoory << endl;
 		glVertex2i(icoorx, icoory);
@@ -331,5 +354,26 @@ inline void RenderAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
 	}
 	glEnd();
 	glutPostRedisplay();
+
+}
+
+inline void RenderText()
+{
+	//月份标签数组
+	GLubyte label[36] = {
+				'J', 'a', 'n',
+				'F', 'e', 'b',
+				'M', 'a', 'r',
+				'A', 'p', 'r',
+				'M', 'a', 'y',
+				'J', 'u', 'n',
+				'J', 'u', 'l',
+				'A', 'u', 'g',
+				'S', 'e', 'p',
+				'O', 'c', 't',
+				'N', 'o', 'v',
+				'D', 'e', 'c' };
+	//折线图数值项
+	GLint dataValue[12] = { 420, 342, 324, 310, 262, 185, 190, 196, 217, 240, 312, 438 };
 
 }
