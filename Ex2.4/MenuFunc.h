@@ -27,7 +27,7 @@ constexpr auto GL_LINE_STRIP_MODE = 2;
 constexpr auto GL_LINE_LOOP_MODE = 3;
 //ÂÝÐýÏßÄÚÍâ°ë¾¶
 constexpr auto R_INNER = 30;
-constexpr auto R_OUTER = 150;
+constexpr auto R_OUTER = 200;
 
 
 static int iColor = WHITE;
