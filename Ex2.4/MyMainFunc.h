@@ -56,7 +56,7 @@ inline void MainGraphFunc()
 
 void RenderScene()
 {
-
+	glClearColor(1, 1, 1, 1);
 	glPointSize(5);
 	if (creak)
 	{
