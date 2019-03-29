@@ -56,7 +56,7 @@ void removeall(fstream &datafile);
 void RenderACircle(int CiclePointNum);
 void RenderACircle(int CiclePointNum, int  CicleLineMode);
 //螺旋线
-void REnserAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot = 100);
+void RenderAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot = 100);
 //保存xy数据
 void setXY(int x, int y);
 
@@ -151,7 +151,7 @@ inline void CircleMenu_CB(int MenuID)
 		break;
 	}
 	case 2: {
-		REnserAHelix(R_INNER, R_OUTER);
+		RenderAHelix(R_INNER, R_OUTER);
 		break;
 	}
 	}
@@ -309,7 +309,7 @@ inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 	glutPostRedisplay();
 }
 
-inline void REnserAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
+inline void RenderAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
 {
 	float fR_step = (fRadiusOut - fRadiusInner) / iNumOfDot;
 	float fR_temp = fRadiusInner;
