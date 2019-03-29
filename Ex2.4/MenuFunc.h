@@ -315,7 +315,7 @@ inline void REnserAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
 	float fR_temp = fRadiusInner;
 	int icoorx = 0;
 	int icoory = 0;
-	glPointSize(4);
+	glPointSize(3);
 	glBegin(GL_POINTS);
 	for (float angle = 0; angle < 360 * 3; angle += 360 * 3 / iNumOfDot)
 	{
