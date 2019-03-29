@@ -291,7 +291,7 @@ inline void RenderACircle(int CiclePointNum)
 
 inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 {
-	
+
 	int coorx;
 	int coory;
 	glPointSize(2);
@@ -379,16 +379,29 @@ inline void RenderText()
 	GLint dataValue[12] = { 420, 342, 324, 310, 262, 185, 190, 196, 217, 240, 312, 438 };
 
 	constexpr auto kRemainLREdgePixel = 20;
-	constexpr auto kCoorXStep = (WINDOW_WIDTH - 2 * kRemainLREdgePixel) / 12;
+	constexpr auto kCoorXStep = (WINDOW_WIDTH - 2 * kRemainLREdgePixel) / 11;
 	constexpr auto kBottonEdge = 50;
 	int icoorx = kRemainLREdgePixel;
 	auto icoory = 0;
 	glColor3f(0, 0, 0);
+	glLineWidth(2);
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < 12; i++)
 	{
 		icoory = dataValue[i] + kBottonEdge;
-		glVertex2i(icoorx,icoory);
+		glVertex2i(icoorx, icoory);
+		cout << icoorx << " " << icoory << endl;
+		icoorx += kCoorXStep;
+	}
+	glEnd();
+	icoorx = kRemainLREdgePixel;
+	glColor3f(1, 0, 0);
+	glPointSize(4);
+	glBegin(GL_POINTS);
+	for (int i = 0; i < 12; i++)
+	{
+		icoory = dataValue[i] + kBottonEdge;
+		glVertex2i(icoorx, icoory);
 		cout << icoorx << " " << icoory << endl;
 		icoorx += kCoorXStep;
 	}
