@@ -406,6 +406,7 @@ inline void RenderText()
 		icoorx += kCoorXStep;
 	}
 	glEnd();
+	//TODO: addtext
 	glutPostRedisplay();
 
 }
