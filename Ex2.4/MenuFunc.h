@@ -13,8 +13,8 @@ constexpr auto WHITE = 0;
 constexpr auto RED = 1;
 constexpr auto GREEN = 2;
 constexpr auto BLUE = 3;
-constexpr auto WINDOW_WIDTH = 640;
-constexpr auto WINDOW_HEIGHT = 480;
+constexpr auto WINDOW_WIDTH = 600;
+constexpr auto WINDOW_HEIGHT = 600;
 
 constexpr auto PI = 3.14159;
 //生成圆的角度增量（角度值
@@ -215,7 +215,7 @@ void savedata(vector<CoordinateXY> datapoint)
 {
 	//remove("Data.txt");
 	datafile.open("Data.txt", ios::out | ios::app);
-	for (vector<CoordinateXY>::iterator iter = datapoint.begin(); iter != datapoint.end(); iter++)
+	for (auto iter = datapoint.begin(); iter != datapoint.end(); iter++)
 	{
 		datafile << iter->getCoorX() << " " << iter->getCoorY() << " " << iter->getColor() << endl;
 	}
@@ -272,6 +272,7 @@ void removeall(fstream & datafile)
 
 inline void RenderACircle(int CiclePointNum)
 {
+	glColor3f(0, 0, 0);
 	int coorx;
 	int coory;
 	glPointSize(2);
@@ -290,6 +291,7 @@ inline void RenderACircle(int CiclePointNum)
 
 inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 {
+	
 	int coorx;
 	int coory;
 	glPointSize(2);
@@ -375,5 +377,22 @@ inline void RenderText()
 				'D', 'e', 'c' };
 	//折线图数值项
 	GLint dataValue[12] = { 420, 342, 324, 310, 262, 185, 190, 196, 217, 240, 312, 438 };
+
+	constexpr auto kRemainLREdgePixel = 20;
+	constexpr auto kCoorXStep = (WINDOW_WIDTH - 2 * kRemainLREdgePixel) / 12;
+	constexpr auto kBottonEdge = 50;
+	int icoorx = kRemainLREdgePixel;
+	auto icoory = 0;
+	glColor3f(0, 0, 0);
+	glBegin(GL_LINE_STRIP);
+	for (int i = 0; i < 12; i++)
+	{
+		icoory = dataValue[i] + kBottonEdge;
+		glVertex2i(icoorx,icoory);
+		cout << icoorx << " " << icoory << endl;
+		icoorx += kCoorXStep;
+	}
+	glEnd();
+	glutPostRedisplay();
 
 }

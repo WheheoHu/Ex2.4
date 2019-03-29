@@ -13,8 +13,8 @@
 
 using namespace std;
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 600
+#define WINDOW_HEIGHT 600
 #define WHITE 0
 #define RED 1
 #define GREEN 2
