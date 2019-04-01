@@ -255,7 +255,7 @@ void loaddata(fstream & datafile)
 		}
 		}
 		glBegin(GL_POINTS);
-		glVertex2i(coorx, coory);
+		glVertex3i(coorx, coory,0);
 		glEnd();
 		glutPostRedisplay();
 	}
@@ -283,7 +283,7 @@ inline void RenderACircle(int CiclePointNum)
 		coorx = CIRCLE_R * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
 		coory = CIRCLE_R * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
 		cout << coorx << " " << coory << endl;
-		glVertex2i(coorx, coory);
+		glVertex3i(coorx, coory,0);
 	}
 	glEnd();
 	glutPostRedisplay();
@@ -303,7 +303,7 @@ inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 			coorx = CIRCLE_R * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
 			coory = CIRCLE_R * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
 			cout << coorx << " " << coory << endl;
-			glVertex2i(coorx, coory);
+			glVertex3i(coorx, coory,0);
 		}
 		glEnd();
 	}
@@ -315,7 +315,7 @@ inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 			coorx = CIRCLE_R * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
 			coory = CIRCLE_R * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
 			cout << coorx << " " << coory << endl;
-			glVertex2i(coorx, coory);
+			glVertex3i(coorx, coory,0);
 		}
 		glEnd();
 	}
@@ -327,7 +327,7 @@ inline void RenderACircle(int CiclePointNum, int CicleLineMode)
 			coorx = CIRCLE_R * cos(angle*PI / 180) + WINDOW_WIDTH / 2;
 			coory = CIRCLE_R * sin(angle*PI / 180) + WINDOW_HEIGHT / 2;
 			cout << coorx << " " << coory << endl;
-			glVertex2i(coorx, coory);
+			glVertex3i(coorx, coory,0);
 		}
 		glEnd();
 	}
@@ -350,7 +350,7 @@ inline void RenderAHelix(float fRadiusInner, float fRadiusOut, int iNumOfDot)
 		glColor3f(rand() % 100 / 100., rand() % 100 / 100., rand() % 100 / 100.);
 
 		cout << icoorx << " " << icoory << endl;
-		glVertex2i(icoorx, icoory);
+		glVertex3i(icoorx, icoory,0);
 		fR_temp += fR_step;
 
 	}
@@ -389,7 +389,7 @@ inline void RenderText()
 	for (int i = 0; i < 12; i++)
 	{
 		icoory = dataValue[i] + kBottonEdge;
-		glVertex2i(icoorx, icoory);
+		glVertex3i(icoorx, icoory,0);
 		cout << icoorx << " " << icoory << endl;
 		icoorx += kCoorXStep;
 	}
@@ -401,7 +401,7 @@ inline void RenderText()
 	for (int i = 0; i < 12; i++)
 	{
 		icoory = dataValue[i] + kBottonEdge;
-		glVertex2i(icoorx, icoory);
+		glVertex3i(icoorx, icoory,0);
 		cout << icoorx << " " << icoory << endl;
 		icoorx += kCoorXStep;
 	}
