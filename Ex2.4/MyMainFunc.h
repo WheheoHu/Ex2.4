@@ -56,7 +56,7 @@ inline void MainGraphFunc()
 	glutMouseFunc(mouseProcess);
 	glutDisplayFunc(RenderScene);
 	glutSpecialFunc(Specialkey);
-	glutReshapeFunc(ChangeSize);
+//	glutReshapeFunc(ChangeSize);
 	glutMainLoop();
 }
 
